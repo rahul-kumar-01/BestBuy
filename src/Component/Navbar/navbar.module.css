@@ -1,0 +1,31 @@
+.main{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    background-color: #242424;
+    z-index: 2;
+    margin:0;
+    padding: 0;
+    border-bottom: 1px solid white;
+}
+.outlet{
+    padding-top:  100px;
+}
+
+.navlistLeft li, .navlistRight li{
+    padding: 20px;
+    color:  white;
+}
+
+
+.navlistLeft{
+    display: flex;
+    justify-items: flex-start;
+}
+.navlistRight{
+    display: flex;
+    justify-items: flex-end;
+    font-weight: bold;
+}
+

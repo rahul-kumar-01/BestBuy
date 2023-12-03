@@ -1,0 +1,36 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    width: 100%;
+}
+
+.signInForm{
+    width: 300px;
+}
+
+.signInForm h2{
+    margin: 20px;
+}
+.signInForm label{
+    display: block;
+    margin: 10px 0;
+}
+.signInForm input{
+    width: 100%;
+    display: block;
+    padding: 5px;
+    font-size: 14px;
+}
+.signInForm button{
+    margin: 20px 0;
+    padding: 4px;
+    
+}
+
+@media screen and (max-width: 800px){
+    .signInForm{
+        width: 70%;
+    }
+}
