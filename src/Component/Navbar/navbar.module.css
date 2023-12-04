@@ -12,13 +12,10 @@
 .outlet{
     padding-top:  100px;
 }
-
 .navlistLeft li, .navlistRight li{
     padding: 20px;
     color:  white;
 }
-
-
 .navlistLeft{
     display: flex;
     justify-items: flex-start;

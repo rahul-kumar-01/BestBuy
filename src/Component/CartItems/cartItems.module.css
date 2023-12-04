@@ -1,0 +1,44 @@
+.table{
+    width: 80%;
+    margin:auto;
+    margin-bottom: 40px;
+}
+tr{
+    display: flex;
+}
+th ,td {
+    display: flex;
+    padding: 10px;
+    border: 1px solid white;
+}
+.one{
+    flex-grow: 2;
+    width: 10%;
+}
+.two{
+    flex-grow: 1;
+    width: 10%;
+}
+.placeOrderBtn{
+    position: relative;
+    width: 300px;
+    height: 40px;
+    padding: 20px;
+    font-size: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    border: none;
+    transition: .2s all ease-in;
+}
+.placeOrderBtn:hover{
+    box-shadow: 0 0 20px white;
+    background-color: white;
+    color:black;
+}
+.btnText{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translateX(-50%) translateY(-50%);
+}

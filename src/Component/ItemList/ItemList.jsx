@@ -1,44 +1,78 @@
 import React, { useEffect, useState } from "react";
 import style from "./itemList.module.css";
 import { Link } from "react-router-dom";
-import { setInitialStateAsync } from "../../Redux/reducer/itemsReducer";
 import { useDispatch, useSelector } from "react-redux";
+
+import { itemsActions } from "../../Redux/reducer/itemsReducer";
+
+import {  setInitialStateAsync } from "../../Redux/reducer/itemsReducer";
+import { setUpdatedItemArrayAsync } from "../../Redux/reducer/itemsReducer";
 
 
 const ItemList = () => {
-    const [itemArray, setItemArray] = useState([]);
     const dispatch = useDispatch();
+    const [itemArray, setItemArray] = useState([]);
+    
+    const checkBoxCategoryArray = useSelector((state)=>state.itemsReducer.checkBoxCategoryArray);
     const itemArrayFromReducer = useSelector((state)=>state.itemsReducer.itemArray);
 
+    useEffect(()=>{
+        dispatch(setInitialStateAsync());
+    },[])
 
     useEffect(() => {
-        // Dispatch the async action when the component mounts
-        dispatch(setInitialStateAsync());
-    }, [dispatch]); // Include dispatch in the dependency array to satisfy the ESLint exhaustive-deps rule
+        dispatch(setUpdatedItemArrayAsync());
+    }, [checkBoxCategoryArray]); 
 
     useEffect(() => {
         setItemArray(itemArrayFromReducer);
     }, [itemArrayFromReducer]);
 
+    function handleCheckBox(event,itemCategory){
+        const checked = event.target.checked;
+        dispatch(itemsActions.setCheckBoxArray({ checked, itemCategory }));
+    }
 
     return(
         <>
-        
+
         <div className={style.main}>
 
             <div className={style.filterBox}>
 
+                <div className={style.filterForm}>
+                    <form action="/submit" method="post">
+
+                        <input type="checkbox" id="checkbox2" name="options" onChange={(event) => handleCheckBox(event, "men's clothing")}/>
+                        <label for="checkbox2">Men's clothing</label>
+                        <br />
+
+                        <input type="checkbox" id="checkbox1" name="options" onClick={(event)=>handleCheckBox(event,"women's clothing")}/>
+                        <label for="checkbox1">Women's clothing</label>
+                        
+
+                        <br/>
+                        
+                        <input type="checkbox" id="checkbox3" name="options" onClick={(event) => handleCheckBox(event,"jewelery")}/>
+                        <label for="checkbox3">Jewelery</label>
+                        
+
+                        <br/>
+
+                        <input type="checkbox" id="checkbox4" name="options" onClick={(event)=>handleCheckBox(event,"electronics")}/>
+                        <label for="checkbox4">Electronics</label>
+                        
+
+                        <br/>
+                    </form>
+                </div>
+                
             </div>
 
             <div className={style.itemList}>
                 {itemArray.map((info,index)=>{
-                    console.log(info);
-                    const id = info.id;
                     return(
                         <>
-                        
-                        
-
                             <div className={style.itemCard}>
                             <Link to={`/items/${info.id}`} style={{ textDecoration: 'none', color: 'inherit' , margin: '0', padding : '0'}}>
                                 
@@ -58,15 +92,11 @@ const ItemList = () => {
                                                 <img key={i} src='https://cdn-icons-png.flaticon.com/128/1828/1828884.png' alt="Icon Image" className={style.star}/>
                                             ))}
                                             
-                                            {/* <span>{info.rating.rate}</span>  */}
                                             <span style={{margin:"0 10px", verticalAlign: "middle", fontSize: '12px'}}>( {info.rating.count} )</span>
                                         </p>   
                                     </div>
 
-                                    <div className={style.btnBox}>
-                                        <button className={`${style.btn} ${style.addToCart}`}>Add To Cart</button>
-                                        <button className={`${style.btn} ${style.removeFromCart}`}>Remove From Cart</button>
-                                    </div>
+                    
 
                                 </div>
 
@@ -78,6 +108,7 @@ const ItemList = () => {
                     )
                 })}
 
+            
             </div>
 
         </div>

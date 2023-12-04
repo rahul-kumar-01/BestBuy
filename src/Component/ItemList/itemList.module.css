@@ -1,16 +1,28 @@
 .main{
     height: auto;
     width: 100vw;
-    display: flex;
 }
-
 .filterBox{
-    
+    display: inline-block;
     min-width: 20vw;
-    height: 100vw;
+    vertical-align: top;
+}
+.filterForm{
+    position: fixed;
+    top:50vh;
+    transform: translateY(-50%);
+    padding-left: 20px;
+}
+label{
+    font-size: 20px;
+}
+input[type='checkbox']{
+    padding: 20px;
+    margin:10px;
 }
 .itemList{
-    display: flex;
+    width: 70vw;
+    display: inline-block;
     flex-direction: column;
     flex-wrap: wrap;
 }
@@ -20,7 +32,6 @@
     border-radius: 20px;
 }
 .itemInfo{
-    /* border: 1px solid red; */
     padding: 10px;
     display: inline-block;
 }
@@ -28,8 +39,6 @@
     width: 100%;
     display: flex;
     position: relative;
-
-    
 }
 .itemInfo p{
     padding: 10px;
@@ -41,26 +50,4 @@
 .star{
     height: 15px;
     width: 15px;
-}
-.btnBox{
-    position: absolute;
-    top:50%;
-    transform: translateY(-50%);
-    right: 0%;
-}
-.btn{
-    width: 100%;
-    display: block;
-    padding: 10px;
-    border-radius: 20px;
-    margin: 20px 0;
-    outline: none;
-    border: none;
-}
-
-.addToCart{
-    
-}
-.removeFromCart{
-
 }
