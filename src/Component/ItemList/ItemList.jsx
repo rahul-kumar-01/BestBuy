@@ -6,12 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { itemsActions } from "../../Redux/reducer/itemsReducer";
 
 import {  setInitialStateAsync } from "../../Redux/reducer/itemsReducer";
-import { setUpdatedItemArrayAsync } from "../../Redux/reducer/itemsReducer";
+
 
 
 const ItemList = () => {
     const dispatch = useDispatch();
     const [itemArray, setItemArray] = useState([]);
+    const [scroll,setScroll] = useState(50);
     
     const checkBoxCategoryArray = useSelector((state)=>state.itemsReducer.checkBoxCategoryArray);
     const itemArrayFromReducer = useSelector((state)=>state.itemsReducer.itemArray);
@@ -21,7 +22,7 @@ const ItemList = () => {
     },[])
 
     useEffect(() => {
-        dispatch(setUpdatedItemArrayAsync());
+        dispatch(itemsActions.setItemArrayDueToCheckBox());
     }, [checkBoxCategoryArray]); 
 
     useEffect(() => {
@@ -33,6 +34,12 @@ const ItemList = () => {
         dispatch(itemsActions.setCheckBoxArray({ checked, itemCategory }));
     }
 
+    function handleScroll(event){
+        const scrollValue = event.target.value;
+        setScroll(scrollValue);
+        dispatch(itemsActions.setItemArrayDueToScroll({scrollValue}));
+    }   
+
     return(
         <>
 
@@ -43,6 +50,12 @@ const ItemList = () => {
                 <div className={style.filterForm}>
                     <form action="/submit" method="post">
 
+                        <h3>Price Filter</h3>
+                        <div>
+                        <input type="range" min="0" max="125" onChange={(event)=>handleScroll(event)} value={scroll} className={style.scroll}/> <span className={style.scrollValue}>{scroll}</span>
+                        </div>
+                        
+                        <h3>Category</h3>
                         <input type="checkbox" id="checkbox2" name="options" onChange={(event) => handleCheckBox(event, "men's clothing")}/>
                         <label for="checkbox2">Men's clothing</label>
                         <br />

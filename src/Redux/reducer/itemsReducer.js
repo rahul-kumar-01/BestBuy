@@ -4,7 +4,7 @@ const initialState = {
     allItemArray: [],
     itemArray : [],
     checkBoxCategoryArray: [],
-    selectedItemArray : [],
+    checkBoxSelectedItem : [],
 }
 
 export const setInitialStateAsync = createAsyncThunk(
@@ -16,12 +16,6 @@ export const setInitialStateAsync = createAsyncThunk(
                 arr = [...json];
         })
         return arr;
-    }
-)
-
-export const setUpdatedItemArrayAsync = createAsyncThunk(
-    '/items/setUpdatedItemArrayDueToCheckBox',()=>{
-        return;
     }
 )
 
@@ -38,21 +32,28 @@ export const itemsSlice = createSlice({
                 state.checkBoxCategoryArray = newCheckBoxArray;
             }
         },
-    },
-    extraReducers: (builder) => {
-        builder.addCase(setInitialStateAsync.fulfilled,(state,action)=>{
-            state.allItemArray = action.payload;
-            state.itemArray = action.payload;
-        })
-        .addCase(setUpdatedItemArrayAsync.fulfilled,(state,action)=>{
+        setItemArrayDueToScroll:(state,action)=>{
+            const {scrollValue} = action.payload;
+            state.itemArray = state.checkBoxSelectedItem.filter((item)=>item.price <= scrollValue);
+        },
+        setItemArrayDueToCheckBox:(state,action)=>{
             if(state.checkBoxCategoryArray.length === 0){
                 state.itemArray = state.allItemArray;
                 return;
             }
             const filteredObjects = state.allItemArray.filter(obj => state.checkBoxCategoryArray.includes(obj.category));
             state.itemArray = filteredObjects;
+            state.checkBoxSelectedItem = filteredObjects
+        }
+        
+    },
+    extraReducers: (builder) => {
+        builder.addCase(setInitialStateAsync.fulfilled,(state,action)=>{
+            state.allItemArray = action.payload;
+            state.itemArray = action.payload;
         })
     }
 })
+
 export const itemsReducer = itemsSlice.reducer;
 export const itemsActions = itemsSlice.actions; 
