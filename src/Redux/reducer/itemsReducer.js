@@ -4,7 +4,8 @@ const initialState = {
     allItemArray: [],
     itemArray : [],
     checkBoxCategoryArray: [],
-    checkBoxSelectedItem : [],
+    itemForScrollFilter : [],
+    
 }
 
 export const setInitialStateAsync = createAsyncThunk(
@@ -34,23 +35,25 @@ export const itemsSlice = createSlice({
         },
         setItemArrayDueToScroll:(state,action)=>{
             const {scrollValue} = action.payload;
-            state.itemArray = state.checkBoxSelectedItem.filter((item)=>item.price <= scrollValue);
+            state.itemArray = state.itemForScrollFilter.filter((item)=>item.price <= scrollValue);
         },
         setItemArrayDueToCheckBox:(state,action)=>{
             if(state.checkBoxCategoryArray.length === 0){
                 state.itemArray = state.allItemArray;
+                state.itemForScrollFilter = state.allItemArray;
                 return;
             }
             const filteredObjects = state.allItemArray.filter(obj => state.checkBoxCategoryArray.includes(obj.category));
             state.itemArray = filteredObjects;
-            state.checkBoxSelectedItem = filteredObjects
+            state.itemForScrollFilter = filteredObjects;
         }
-        
     },
+
     extraReducers: (builder) => {
         builder.addCase(setInitialStateAsync.fulfilled,(state,action)=>{
             state.allItemArray = action.payload;
             state.itemArray = action.payload;
+            state.itemForScrollFilter = action.payload;
         })
     }
 })

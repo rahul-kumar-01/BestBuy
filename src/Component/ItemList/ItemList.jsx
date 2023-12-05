@@ -17,6 +17,7 @@ const ItemList = () => {
     const checkBoxCategoryArray = useSelector((state)=>state.itemsReducer.checkBoxCategoryArray);
     const itemArrayFromReducer = useSelector((state)=>state.itemsReducer.itemArray);
 
+    //for fetching the item from api for the first time 
     useEffect(()=>{
         dispatch(setInitialStateAsync());
     },[])
@@ -33,7 +34,7 @@ const ItemList = () => {
         const checked = event.target.checked;
         dispatch(itemsActions.setCheckBoxArray({ checked, itemCategory }));
     }
-
+    
     function handleScroll(event){
         const scrollValue = event.target.value;
         setScroll(scrollValue);
