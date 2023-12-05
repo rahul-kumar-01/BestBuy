@@ -5,7 +5,7 @@ import { setInitialStateAsync } from "../../Redux/reducer/itemsReducer";
 import { handleAddToCartAsync , handleRemoveFromCartAsync } from "../../Redux/reducer/sessionItemReducer";
 import { setInitialStateAsync as setCartState } from "../../Redux/reducer/sessionItemReducer";
 import { useEffect } from "react";
-import style from "./ItemDetails.module.css";
+import style from "./itemDetails.module.css";
 
 const ItemDetails = () => {
     const [userid, setUserId] = useState("");
