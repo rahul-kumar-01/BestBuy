@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {db} from "../../Config/firebaseConfig";
 import { collection, addDoc, getDocs } from "firebase/firestore";
-import { doc, updateDoc,getDoc } from "firebase/firestore";
+import { doc, updateDoc,getDoc,setDoc } from "firebase/firestore";
+
 
 const initialState = {
     cartArray : [],
@@ -13,9 +14,12 @@ export const setInitialStateAsync = createAsyncThunk(
         const userRef = doc(db, "Users", payload.userId);
         const tokenSnap = await getDoc(userRef);
         const userCartArray = tokenSnap.data().userCartArray;
-        return tokenSnap.data().userCartArray;
+        const userOrderArray = tokenSnap.data().orderDetailsArray;
+        return {userCartArray,userOrderArray};
     }   
 )
+
+
 
 export const handleAddToCartAsync = createAsyncThunk(
     'sessionItem/addToCart', async (payload)=> {
@@ -38,8 +42,30 @@ export const handleRemoveFromCartAsync = createAsyncThunk(
         const newUserCartArray = userCartArray.filter((data,i) => i !== index);
         await updateDoc(userRef, {
             userCartArray : newUserCartArray
+            
         })
         return newUserCartArray;
+    }
+)
+
+export const handlePlaceOrderAsync = createAsyncThunk(
+    'sessionItem/placeOrder',async(payload)=>{
+        const userRef = doc(db, "Users", payload.userId);
+        const tokenSnap = await getDoc(userRef);
+        const temp = tokenSnap.data().orderDetailsArray;
+        temp.push({...payload.cartArray});
+        // const flattenedData = temp.map((innerArray, index) => ({ index, values: innerArray }));
+        try {
+            await updateDoc(userRef, {
+                orderDetailsArray: [...temp],
+                userCartArray: []
+            })
+            console.log("Order Placed successfully!");
+        } catch (error) {
+            console.error("Error adding document: ", error);
+        }
+        window.alert('Order placed');
+        return;
     }
 )
 
@@ -51,7 +77,8 @@ const sessionItemSlice = createSlice({
     },
     extraReducers:(builder) => {
         builder.addCase(setInitialStateAsync.fulfilled,(state,action)=>{
-            state.cartArray = action.payload;
+            state.cartArray = action.payload.userCartArray;
+            state.orderArray = action.payload.userOrderArray;
         })
         .addCase(handleAddToCartAsync.fulfilled,(state,action)=>{
             state.cartArray = [...state.cartArray,action.payload];
@@ -59,7 +86,11 @@ const sessionItemSlice = createSlice({
         .addCase(handleRemoveFromCartAsync.fulfilled,(state,action)=>{
             state.cartArray = action.payload;
         })
+        .addCase(handlePlaceOrderAsync.fulfilled,(state,actino)=>{
+            state.cartArray = [];
+        })
     }
 })
 
 export const sessionItemReducer = sessionItemSlice.reducer;
+export const sessionItemAction = sessionItemSlice.actions;

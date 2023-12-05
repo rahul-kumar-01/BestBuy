@@ -1,0 +1,21 @@
+.table{
+    width: 80%;
+    margin:auto;
+    margin-bottom: 40px;
+}
+tr{
+    display: flex;
+}
+th ,td {
+    display: flex;
+    padding: 10px;
+    border: 1px solid white;
+}
+.one{
+    flex-grow: 2;
+    width: 10%;
+}
+.two{
+    flex-grow: 1;
+    width: 10%;
+}

@@ -18,7 +18,7 @@ const Navbar = () => {
         <>
             <div className={style.main}>
                 <div className={style.navlistLeft}>
-                <li> <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}> Busy Buy  </Link> </li>
+                <li> <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}> <b style={{fontSize:'18px'}}>Best Buy</b>  </Link> </li>
                 </div>
                 <div className={style.navlistRight}>
 

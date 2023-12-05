@@ -43,6 +43,7 @@ export const handleSignInAsync = createAsyncThunk(
                 }
             }
         }
+        window.alert("Email or password didn't match");
     }
 )
 //  todo: can't use await with forEach
@@ -57,7 +58,7 @@ export const sessionSlice = createSlice({
     name: 'session',
     initialState : initialState,
     reducers: {
-
+        
     },
     extraReducers:(builder) => {
         builder.addCase(handleSignInAsync.fulfilled, (state,action) => {

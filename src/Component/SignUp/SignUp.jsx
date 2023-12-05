@@ -33,16 +33,16 @@ const SignUp = () => {
             <form className={style.signInForm}>
                 <h2>Sign Up</h2>
                 <label htmlFor="username">Name:</label>
-                <input type="text" id="username" name="userName" required ref={usernameRef}/>
+                <input type="text" id="username" name="userName" required ref={usernameRef} autoComplete="off"/>
 
                 <label htmlFor="useremail">UserEmail:</label>
-                <input type="email" id="useremail" name="userEmailId" required ref={useremailidRef}/>
+                <input type="email" id="useremail" name="userEmailId" required ref={useremailidRef} autoComplete="off"/>
 
                 <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="userPassword" required ref={userpasswordRef}/>
+                <input type="password" id="password" name="userPassword" required ref={userpasswordRef} autoComplete="current-password"/>
 
                 <label htmlFor="confirmPassword">Confirm Password:</label>
-                <input type="password" id="confirmPassword" name="userConfirmPassword" required ref={userconfirmpasswordRef}/>
+                <input type="password" id="confirmPassword" name="userConfirmPassword" required ref={userconfirmpasswordRef} autoComplete="current-password"/>
                 
                 <button type="submit">Sign Up</button> 
             </form>

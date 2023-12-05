@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector ,useDispatch } from "react-redux";
 import { setInitialStateAsync } from "../../Redux/reducer/sessionItemReducer";
 import style from "./cartItems.module.css";
+import { sessionItemAction } from "../../Redux/reducer/sessionItemReducer";
+import { handlePlaceOrderAsync } from "../../Redux/reducer/sessionItemReducer";
 
 const CartItems = () => {
     const cartArray = useSelector((state)=>state.sessionItemReducer.cartArray);
     const userId = useSelector((state) =>state.sessionReducer.currentSessionUserId);
+
     const dispatch = useDispatch();
     const [cart,setCart] = useState([]);
     let total = 0;
@@ -17,6 +20,10 @@ const CartItems = () => {
     useEffect(()=>{
         setCart(cartArray);
     },[cartArray])
+
+    function handlePlaceOrder(){
+        dispatch(handlePlaceOrderAsync({userId,cartArray}));
+    }
 
     return(
         <>
@@ -53,8 +60,8 @@ const CartItems = () => {
             </table>
 
 
-            <button className={style.placeOrderBtn}>
-                <span className={style.btnText}> Place Order </span>
+            <button className={style.placeOrderBtn}  onClick={handlePlaceOrder}>
+                <span className={style.btnText} > Place Order </span>
             </button>
             
         </>

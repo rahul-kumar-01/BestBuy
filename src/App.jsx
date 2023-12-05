@@ -6,6 +6,7 @@ import SignUp from './Component/SignUp/SignUp';
 import ItemList from './Component/ItemList/ItemList';
 import ItemDetails from './Component/ItemDetails/ItemDetails';
 import CartItems from './Component/CartItems/CartItems';
+import Orders from './Component/Orders/Orders';
 import {RouterProvider, createBrowserRouter} from "react-router-dom";
 import {db} from './Config/firebaseConfig';
 import { Provider } from 'react-redux';
@@ -45,7 +46,7 @@ function App() {
           <Route path="signIn" element={<SignIn />} />
           <Route path="signUp" element={<SignUp />} />
           <Route path="cart" element={<CartItems />} />
-          <Route path="orders" element={<></> } />
+          <Route path="orders" element={<Orders/> } />
           <Route path="items/:id" element={<ItemDetails />} />
         </Routes>
       </Router>

@@ -5,7 +5,6 @@ const initialState = {
     itemArray : [],
     checkBoxCategoryArray: [],
     itemForScrollFilter : [],
-    
 }
 
 export const setInitialStateAsync = createAsyncThunk(
@@ -16,6 +15,7 @@ export const setInitialStateAsync = createAsyncThunk(
             .then(json=> {
                 arr = [...json];
         })
+
         return arr;
     }
 )
