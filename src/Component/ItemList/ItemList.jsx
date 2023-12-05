@@ -34,7 +34,7 @@ const ItemList = () => {
         const checked = event.target.checked;
         dispatch(itemsActions.setCheckBoxArray({ checked, itemCategory }));
     }
-    
+
     function handleScroll(event){
         const scrollValue = event.target.value;
         setScroll(scrollValue);
@@ -58,23 +58,23 @@ const ItemList = () => {
                         
                         <h3>Category</h3>
                         <input type="checkbox" id="checkbox2" name="options" onChange={(event) => handleCheckBox(event, "men's clothing")}/>
-                        <label for="checkbox2">Men's clothing</label>
+                        <label htmlFor="checkbox2">Men's clothing</label>
                         <br />
 
                         <input type="checkbox" id="checkbox1" name="options" onClick={(event)=>handleCheckBox(event,"women's clothing")}/>
-                        <label for="checkbox1">Women's clothing</label>
+                        <label htmlFor="checkbox1">Women's clothing</label>
                         
 
                         <br/>
                         
                         <input type="checkbox" id="checkbox3" name="options" onClick={(event) => handleCheckBox(event,"jewelery")}/>
-                        <label for="checkbox3">Jewelery</label>
+                        <label htmlFor="checkbox3">Jewelery</label>
                         
 
                         <br/>
 
                         <input type="checkbox" id="checkbox4" name="options" onClick={(event)=>handleCheckBox(event,"electronics")}/>
-                        <label for="checkbox4">Electronics</label>
+                        <label htmlFor="checkbox4">Electronics</label>
                         
 
                         <br/>
@@ -86,39 +86,35 @@ const ItemList = () => {
             <div className={style.itemList}>
                 {itemArray.map((info,index)=>{
                     return(
-                        <>
-                            <div className={style.itemCard}>
-                            <Link to={`/items/${info.id}`} style={{ textDecoration: 'none', color: 'inherit' , margin: '0', padding : '0'}}>
-                                
-                                <div className={style.itembox}>
 
-                                    <div style={{padding: '10px'}}>
-                                        <img style={{width: "180px", height: "180px", borderRadius: '20px'}} src={info.image}></img>
-                                    </div>
+                            <div className={style.itemCard} key={index}>
+                                <Link to={`/items/${info.id}`} style={{ textDecoration: 'none', color: 'inherit' , margin: '0', padding : '0'}}>
                                     
-                                    <div className={style.itemInfo}>
-                                        <p className={style.infoTitle}>{info.title}</p>
-                                        <p>$ {info.price}</p>
+                                    <div className={style.itembox}>
 
-                                        <p>
-                                            <span>Rating : </span>
-                                            {Array.from({ length: info.rating.rate }, (_, i) => (
-                                                <img key={i} src='https://cdn-icons-png.flaticon.com/128/1828/1828884.png' alt="Icon Image" className={style.star}/>
-                                            ))}
-                                            
-                                            <span style={{margin:"0 10px", verticalAlign: "middle", fontSize: '12px'}}>( {info.rating.count} )</span>
-                                        </p>   
+                                        <div style={{padding: '10px'}}>
+                                            <img style={{width: "180px", height: "180px", borderRadius: '20px'}} src={info.image}></img>
+                                        </div>
+                                        
+                                        <div className={style.itemInfo}>
+                                            <p className={style.infoTitle}>{info.title}</p>
+                                            <p>$ {info.price}</p>
+
+                                            <p>
+                                                <span>Rating : </span>
+                                                {Array.from({ length: info.rating.rate }, (_, i) => (
+                                                    <img key={i} src='https://cdn-icons-png.flaticon.com/128/1828/1828884.png' alt="Icon Image" className={style.star}/>
+                                                ))}
+                                                
+                                                <span style={{margin:"0 10px", verticalAlign: "middle", fontSize: '12px'}}>( {info.rating.count} )</span>
+                                            </p>   
+                                        </div>
+
                                     </div>
 
-                    
-
-                                </div>
-
-                            </Link>
+                                </Link>
                             </div>
 
-
-                        </>
                     )
                 })}
 

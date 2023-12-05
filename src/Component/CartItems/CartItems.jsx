@@ -21,32 +21,37 @@ const CartItems = () => {
     return(
         <>
             <table className={style.table}>
-                <tr>
-                <th className={style.one}>Product Name </th>
-                <th className={style.two}>Price</th>
-                </tr>
+                
+                <thead>
+                    <tr>
+                    <th className={style.one}>Product Name </th>
+                    <th className={style.two}>Price</th>
+                    </tr>
+                </thead>
 
-                {
-                    cart.map((data, i) => {
-                        total += data.price;
-                        return (
-                            <tr key={i}>
-                                <td className={style.one}>{data.title}</td>
-                                <td className={style.two}>{data.price}</td>
-                            </tr>
-                        );
-                    })
-                }
+                <tbody>
+                    {
+                        cart.map((data, i) => {
+                            total += data.price;
+                            return (
+                                <tr key={i}>
+                                    <td className={style.one}>{data.title}</td>
+                                    <td className={style.two}>{data.price}</td>
+                                </tr>
+                            );
+                        })
+                    }
+                </tbody>
 
-
+                <tfoot>
+                    <tr>
+                            <th className={style.one}>Total:</th>
+                            <th className={style.two}>{total}</th>
+                    </tr>
+                </tfoot>
+                
             </table>
 
-            <table className={style.table}>
-                <tr>
-                        <th className={style.one}>Total:</th>
-                        <th className={style.two}>{total}</th>
-                </tr>
-            </table>
 
             <button className={style.placeOrderBtn}>
                 <span className={style.btnText}> Place Order </span>

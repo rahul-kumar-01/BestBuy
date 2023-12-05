@@ -28,15 +28,16 @@ const SignIn = () => {
             <div className={style.main}>
 
             <form className={style.signInForm} onSubmit={(e) => handleSignIn(e)}>
-                <h2>Sign In</h2>
-                <label htmlFor="userEmail">UserEmail:</label>
-                <input type="email" id="userEmail" name="userEmail" required ref={useremailRef}/>
+            <h2>Sign In</h2>
+            <label htmlFor="userEmail">UserEmail:</label>
+            <input type="email" id="userEmail" name="userEmail" required ref={useremailRef} autoComplete="email" />
 
-                <label htmlFor="password">Password:</label>
-                <input type="password" id="password" name="userPassword" required ref={userpasswordRef}/>
+            <label htmlFor="password">Password:</label>
+            <input type="password" id="password" name="userPassword" required ref={userpasswordRef} autoComplete="current-password" />
 
-                <button type="submit">Sign In</button> 
+            <button type="submit">Sign In</button>
             </form>
+
 
             </div>
         </>

@@ -28,7 +28,6 @@ const ItemDetails = () => {
     },[userid])
 
     useEffect(()=>{
-        console.log('cartArray',cartArray);
         let temp = false;
         cartArray.map((data,index)=>{
             if(data.id.toString() === id.toString()) {
@@ -43,7 +42,6 @@ const ItemDetails = () => {
 
 
     const itemArray = useSelector((state)=>state.itemsReducer.itemArray);
-    console.log("ItemDetails", itemArray);
     const index = itemArray.findIndex((obj)=>obj.id.toString() === id.toString());
     
     function handleAddToCart(){
