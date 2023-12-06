@@ -75,15 +75,18 @@ const ItemList = () => {
                         </div>
                         
                         <h3>Category</h3>
+
+                        <input type="checkbox" id="checkbox1" name="options" onClick={(event)=>handleCheckBox(event,"women's clothing")}/>
+                        <label htmlFor="checkbox1">Women's clothing</label>
+                        <br />
+
                         <input type="checkbox" id="checkbox2" name="options" onChange={(event) => handleCheckBox(event, "men's clothing")}/>
                         <label htmlFor="checkbox2">Men's clothing</label>
                         <br />
 
-                        <input type="checkbox" id="checkbox1" name="options" onClick={(event)=>handleCheckBox(event,"women's clothing")}/>
-                        <label htmlFor="checkbox1">Women's clothing</label>
+                        
                         
 
-                        <br/>
                         
                         <input type="checkbox" id="checkbox3" name="options" onClick={(event) => handleCheckBox(event,"jewelery")}/>
                         <label htmlFor="checkbox3">Jewelery</label>

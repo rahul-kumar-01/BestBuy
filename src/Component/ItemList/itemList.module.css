@@ -39,6 +39,7 @@ input[type='checkbox']{
     width: 100%;
     display: flex;
     position: relative;
+    margin: 20px 0;
 }
 .itemInfo p{
     padding: 10px;
@@ -66,8 +67,8 @@ h3{
 .itemImageDiv{
 
     padding: 10px;
-    height: 180px;
-    width: 180px;
+    height: 200px;
+    width: 200px;
     min-height: 50px;
     min-width: 50px;
     flex: 1;
@@ -84,12 +85,35 @@ h3{
     /* border: 1px solid red; */
 }
 @media screen and (max-width: 1000px){
+    .main{
+        display: block;
+        padding-top: 50px;
+    }
     .filterForm{
-        display: none;
+        height: 100px;
+        width: 100vw;
+        font-size: 10px;
+        display: block;
+        position: relative;
+        top:50%;
+    }
+    .filterForm label{
+        font-size: 10px;;
+    }
+    .filterForm input{
+        padding:  5px;
+        margin:5px;
+    }
+    .filterForm h3{
+        padding-top: 0px;
+        margin-bottom: 0px;
     }
     .itemList{
+        position: relative;
+        margin-top: 20px;
         width: 100vw;
         font-size: 12px;
     }
+
 }
 
