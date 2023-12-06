@@ -63,11 +63,11 @@ const ItemDetails = () => {
 
     return(
         <>
-        
+  
         {(itemArray.length !== 0) ? (
-            <>
-                <div style={{padding: '60px'}}>
-                    <div style={{display: 'flex' }}>
+            <>       
+                <div>
+                    <div className={style.contentBox}>
                         <div>
                             <img src = {itemArray[index].image} alt="" style={{height: '300px', width: '300px'}}/>
                         </div>
@@ -75,7 +75,7 @@ const ItemDetails = () => {
                         <div>
 
                         
-                            <div style={{padding: '20px 40px'}}>
+                            <div className={style.itemDescription}>
                                 <h3>Title: </h3>
                                 <span>{itemArray[index].title}</span>
 

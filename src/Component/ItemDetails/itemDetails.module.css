@@ -16,5 +16,20 @@
     
 }
 .removeFromCart{
+    
+}
+.contentBox{
+    display:flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin:auto;
+}
+@media screen and  (max-width:1000px){
+    .contentBox{
+        width: 90vw;
+        font-size: 14px;
+    }
+}
+@media screen and (max-width:500px){
 
 }

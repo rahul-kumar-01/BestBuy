@@ -13,6 +13,7 @@ const ItemList = () => {
     const dispatch = useDispatch();
     const [itemArray, setItemArray] = useState([]);
     const [scroll,setScroll] = useState(50);
+    // const [showFilter, setShowFilter] = useState('false');
     
     const checkBoxCategoryArray = useSelector((state)=>state.itemsReducer.checkBoxCategoryArray);
     const itemArrayFromReducer = useSelector((state)=>state.itemsReducer.itemArray);
@@ -40,9 +41,26 @@ const ItemList = () => {
         setScroll(scrollValue);
         dispatch(itemsActions.setItemArrayDueToScroll({scrollValue}));
     }   
+    // function handleShowFilterBox(event){
+    //     setShowFilter( !showFilter);
+    //     console.log(showFilter);
+    // }
 
     return(
         <>
+        {/* <button onClick={handleShowFilterBox}>
+            arrow
+        </button>
+        {showFilter? 
+            (
+                <>
+
+                </>
+            ):
+            (
+                <>
+                </>
+            )} */}
 
         <div className={style.main}>
 
@@ -92,8 +110,8 @@ const ItemList = () => {
                                     
                                     <div className={style.itembox}>
 
-                                        <div style={{padding: '10px'}}>
-                                            <img style={{width: "180px", height: "180px", borderRadius: '20px'}} src={info.image}></img>
+                                        <div className={style.itemImageDiv}>
+                                            <img className={style.itemImage} src={info.image}></img>
                                         </div>
                                         
                                         <div className={style.itemInfo}>
@@ -106,7 +124,7 @@ const ItemList = () => {
                                                     <img key={i} src='https://cdn-icons-png.flaticon.com/128/1828/1828884.png' alt="Icon Image" className={style.star}/>
                                                 ))}
                                                 
-                                                <span style={{margin:"0 10px", verticalAlign: "middle", fontSize: '12px'}}>( {info.rating.count} )</span>
+                                                <span style={{margin:"0 10px", verticalAlign: "middle", fontSize: '12px',display: 'inline-block'}}>( {info.rating.count} )</span>
                                             </p>   
                                         </div>
 
