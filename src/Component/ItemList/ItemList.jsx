@@ -86,8 +86,6 @@ const ItemList = () => {
 
                         
                         
-
-                        
                         <input type="checkbox" id="checkbox3" name="options" onClick={(event) => handleCheckBox(event,"jewelery")}/>
                         <label htmlFor="checkbox3">Jewelery</label>
                         

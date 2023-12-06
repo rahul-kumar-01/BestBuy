@@ -11,12 +11,18 @@
     border: none;
     display: inline-block;
     margin: 20px;
+    background-color: white;
+    color:white;
 }
 .addToCart{
+    color:rgb(77, 77, 249);
+    border:1px solid rgb(77, 77, 249);
     
 }
 .removeFromCart{
-    
+    background-color: white;
+    border:1px solid red;
+    color:red;
 }
 .contentBox{
     display:flex;
@@ -29,6 +35,10 @@
         width: 90vw;
         font-size: 14px;
     }
+    .btn{
+        width: 50%;
+    }
+
 }
 @media screen and (max-width:500px){
 
