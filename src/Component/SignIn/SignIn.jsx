@@ -37,6 +37,9 @@ const SignIn = () => {
 
             <button type="submit">Sign In</button>
             </form>
+            <h4>Demo Credential</h4> <br />
+            Email : demo@gmail.com <br />
+            Password: demo
 
 
             </div>
