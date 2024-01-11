@@ -12,7 +12,7 @@ export const handleSignUpAsync = createAsyncThunk(
     'session/signUp',async (payload)=>{
         const querySnapshot = await getDocs(collection(db, "Users"));
         let userExists = false;
-        querySnapshot.forEach((doc) => {
+        querySnapshot && querySnapshot.forEach((doc) => {
             if (doc.data().userEmailId === payload.userEmailId) {
                 window.alert('User already exists');
                 userExists = true;
